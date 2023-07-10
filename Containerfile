@@ -23,5 +23,9 @@ EXPOSE 22565/udp
 # Use a bind mount for easy configuration
 WORKDIR /data
 
+# https://quiltmc.org/en/blog/2023-06-26-mau-beacon/
+# Means it won't try to write to the .config directory
+ENV QUILT_LOADER_DISABLE_BEACON=true
+
 CMD ["/server/quilt-server-launch.jar", "nogui"]
 # ENTRYPOINT ["sh"]

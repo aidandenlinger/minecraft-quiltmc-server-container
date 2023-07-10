@@ -30,3 +30,22 @@ services:
     # Allow us to attach to the container later
     stdin_open: true
     tty: true
+
+    # Protect our entry jar from modification
+    read_only: true
+
+    # Java writes and executes from /tmp
+    tmpfs:
+        - /tmp:size=10M,mode=0770,nosuid,nodev
+
+    # limit the resources that can be used!
+    deploy:
+      resources:
+        limits:
+          cpus: 6
+          memory: 4g
+          pids: 256
+
+    # Drop all capabilities since we don't need them!
+    cap_drop:
+      - ALL
