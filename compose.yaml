@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  quilt-server:
+    build: 
+      context: .
+      args:
+        MINECRAFT_VERSION: "1.20.1"
+    volumes:
+      # Mount the local server folder to the data folder in the container
+      # Needs Z on Fedora because of SELinux, see 
+      # <https://docs.podman.io/en/latest/markdown/podman-run.1.html#volume-v-source-volume-host-dir-container-dir-options>
+      # Labeling Volume Mounts
+      - ./data:/data:Z
+    ports:
+      # Open default port for minecraft server
+      - "25565:25565"
+    # Allow us to attach to the container later
+    stdin_open: true
+    tty: true
