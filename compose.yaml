@@ -11,6 +11,10 @@ services:
       # <https://docs.podman.io/en/latest/markdown/podman-run.1.html#volume-v-source-volume-host-dir-container-dir-options>
       # Labeling Volume Mounts
       - ./data:/data:Z
+      # quilt-server-launcher.properties tells quilt where the server jar is
+      # It has to be in the data folder, so we need to deal with this outside
+      # of the container :/ Needs to be read-only so it can't be redirected
+      - ./quilt-server-launcher.properties:/data/quilt-server-launcher.properties:ro,Z
       # W^X (write xor execute): mount mods as *read-only*, can only be added
       # to from outside the container
       - ./mods:/data/mods:ro,Z
