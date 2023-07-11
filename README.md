@@ -21,3 +21,4 @@ Problems:
       files or defaults in the future, we wouldn't capture it.
     - Or, we let `libraries` and `versions` be W&X. Lame, but at least `mods`
     and the root server jar file is protected.
+    - This probably also applies to the `.cache` folder
