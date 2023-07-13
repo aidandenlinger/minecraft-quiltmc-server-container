@@ -11,6 +11,15 @@ services:
       # <https://docs.podman.io/en/latest/markdown/podman-run.1.html#volume-v-source-volume-host-dir-container-dir-options>
       # Labeling Volume Mounts
 
+      # Code!
+      ## *Must* be read only so attackers can't inject new code
+      ## Still mounted on the host so you can add new mods, but the server
+      ## itself can't add or modify them. Validate any mods you add!
+      ## All other jar files are either in the Docker file as readonly,
+      ## or in .cache which is only read in the beginning and is reset on each
+      ## restart
+      - ./data/mods:/data/mods:ro,Z
+
       # Configuration
       ## Ideally we don't want the server to write to this,
       ## only should be able to change this outside
@@ -24,10 +33,6 @@ services:
       ## Mods will add new config files here so they need to be able to write.
       ## This can be set to readonly once you've added all mods.
       - ./data/config:/data/config:rw,Z
-
-      # Code, *must* be read only so attackers can't inject new code
-      - ./data/.cache:/data/.cache:rw,Z  # look into banning permission, likely tmpfs
-      - ./data/mods:/data/mods:ro,Z
 
       # Server data
       ## server must be able to write to these to operate
@@ -51,9 +56,11 @@ services:
     # Protect our entry jar from modification
     read_only: true
 
-    # Java writes and executes from /tmp
+    # Places the server must be able to write to, but doesn't persist
     tmpfs:
-        - /tmp:size=10M,mode=0770,nosuid,nodev
+      # Java writes and executes from /tmp
+      - /tmp:size=10M,mode=0770,nosuid,nodev
+      - /data/.cache:size=100M,mode=0770,noexec,nosuid,nodev
 
     # limit the resources that can be used!
     deploy:
