@@ -11,21 +11,27 @@ RUN wget -O quilt-installer.jar \
     install server $MINECRAFT_VERSION \
     --download-server
 
+# Now, we're gonna generate the libraries and versions jars by running the
+# server once
+WORKDIR /data
+RUN echo "serverJar=/server/server.jar" > quilt-server-launcher.properties \
+    && java -jar /server/quilt-server-launch.jar nogui > /dev/null
+
 FROM gcr.io/distroless/java17-debian11
+WORKDIR /data
+# Copy all jars over! They will be *readonly* within this image :)
 COPY --from=build /server /server
+# Bad form to have several copies, but I don't want to copy all of data
+COPY --from=build /data/libraries /data/libraries
+COPY --from=build /data/versions /data/versions
+COPY --from=build /data/quilt-server-launcher.properties /data/quilt-server-launcher.properties
 
 # Expose the default port for a minecraft server
 EXPOSE 22565/tcp
 EXPOSE 22565/udp
-
-# This is a mounted folder that is on the host machine
-# Holds server data
-# Use a bind mount for easy configuration
-WORKDIR /data
 
 # https://quiltmc.org/en/blog/2023-06-26-mau-beacon/
 # Means it won't try to write to the .config directory
 ENV QUILT_LOADER_DISABLE_BEACON=true
 
 CMD ["/server/quilt-server-launch.jar", "nogui"]
-# ENTRYPOINT ["sh"]
