@@ -35,7 +35,7 @@ services:
       - ./data/config:/data/config:rw,Z
 
       # Server data
-      ## server must be able to write to these to operate
+      ## Server must be able to write to these to operate
       - ./data/crash-reports:/data/crash-reports:rw,Z
       - ./data/logs:/data/logs:rw,Z
       - ./data/world:/data/world:rw,Z
