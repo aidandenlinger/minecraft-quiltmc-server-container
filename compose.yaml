@@ -14,7 +14,7 @@ services:
         limits:
           cpus: 6
           memory: 4g
-          pids: 256
+          pids: 1
 
     ports:
       # Open default port for minecraft server
