@@ -130,7 +130,7 @@ name `localhost`, or use your local IP to connect to it on a local network, or a
 public IP if you've port forwarded.
 
 To stop it, do `just down` / `podman-compose down` / `docker compose down`.
-You can see the logs with `just logs` / `podman-compose logs` / `docker compse
+You can see the logs with `just logs` / `podman-compose logs` / `docker compose
 logs`. To attach to the server, you can use the Justfile or note the name of the
 container in `podman container ls` / `docker container ls` (with podman-compose
 it should be quiltmc-server-container_quilt-server_1) and then you can perform
@@ -139,6 +139,12 @@ server like `op` or `whitelist`).
 
 All data is stored in the `data` folder. Remember to back up this folder, as it
 holds all your server data!
+
+At least once a week, you should update your server image by running `just
+update` / `podman-compose build --pull --no-cache` / `docker compose build
+--pull --no-cache`. This will pull the latest images (including the latest Java
+version and distro fixes). You can also run `podman image prune` / `sudo docker
+image prune` after an update to remove unneeded images.
 
 ## Contributing
 These are the current remaining problems. I'm not intending on working on these
