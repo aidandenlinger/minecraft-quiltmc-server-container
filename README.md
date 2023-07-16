@@ -133,9 +133,9 @@ To stop it, do `just down` / `podman-compose down` / `docker compose down`.
 You can see the logs with `just logs` / `podman-compose logs` / `docker compose
 logs`. To attach to the server, you can use the Justfile or note the name of the
 container in `podman container ls` / `docker container ls` (with podman-compose
-it should be quiltmc-server-container_quilt-server_1) and then you can perform
-actions like `attach` (which will open a terminal session to run commands on the
-server like `op` or `whitelist`).
+it should be minecraft-quiltmc-server-container_quilt-server_1) and then you
+can perform actions like `attach` (which will open a terminal session to run
+commands on the server like `op` or `whitelist`).
 
 All data is stored in the `data` folder. Remember to back up this folder, as it
 holds all your server data!

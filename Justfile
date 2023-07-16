@@ -18,4 +18,4 @@ update:
 	podman image prune
 
 attach:
-	podman attach quiltmc-server-container_quilt-server_1
+	podman attach minecraft-quiltmc-server-container_quilt-server_1
