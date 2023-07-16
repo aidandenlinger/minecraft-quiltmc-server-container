@@ -31,7 +31,10 @@ EXPOSE 22565/tcp
 EXPOSE 22565/udp
 
 # https://quiltmc.org/en/blog/2023-06-26-mau-beacon/
-# Means it won't try to write to the .config directory
+# The beacon requires writing to the ~/.config directory
+# and makes a couple of folders - this is annoying in a
+# read only image, so I'm disabling the beacon. I'm open
+# to a PR to create a writable mount for this config file.
 ENV QUILT_LOADER_DISABLE_BEACON=true
 
 CMD ["/server/quilt-server-launch.jar", "nogui"]
