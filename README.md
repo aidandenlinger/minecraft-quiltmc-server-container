@@ -107,10 +107,11 @@ Due to this, I'm a bit uncomfortable posting an entire image and hosting
 Mojang's code, so I'm pushing the installation to you.
 
 Clone this repo. If you have [Just](https://github.com/casey/just), you can
-run `just install`. Otherwise, make a copy the `data-template` folder and name
-it `data`, then run `podman-compose build` or `docker compose build`. It will
-download the quilt installer and create the server image. You should also be
-able to choose the repo and build it in Podman/Docker Desktop.
+run `just install`. Otherwise, make a copy the `data-template` folder, name it
+`data`, optionally remove the `.keep` file in any folders in `data`, then run
+`podman-compose build` or `docker compose build`. It will download the quilt
+installer and create the server image. You should also be able to choose the
+repo and build it in Podman/Docker Desktop.
 
 ## Usage
 

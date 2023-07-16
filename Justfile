@@ -10,6 +10,7 @@ logs:
 install:
 	if [ -d data ]; then mv data data-backup; fi
 	cp -r data-template data
+	for file in data/*/.keep; do rm $file; done
 	podman-compose build
 
 update:
