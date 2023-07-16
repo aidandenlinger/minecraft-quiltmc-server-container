@@ -18,6 +18,10 @@ impact). *Please note that this is an improvement compared to just running
 the server, but it is not a perfect solution!* Containers can have their own
 vulnerabilities.
 
+There are several other minecraft server containers, but I couldn't find one
+using QuiltMC that primarily focused on security (limiting permissions,
+file-grained permissions, distroless images, etc).
+
 [QuiltMC](https://quiltmc.org/en/) is an open-source mod loader for Minecraft.
 It can be installed on the Minecraft server to allow for installation of mods,
 which this container will do. At the time of writing, it is compatible with
