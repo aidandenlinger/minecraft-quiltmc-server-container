@@ -14,7 +14,7 @@ install:
 	podman-compose build
 
 update:
-	podman-compose build --pull
+	podman-compose build --pull --no-cache
 
 attach:
 	podman attach quiltmc-server-container_quilt-server_1
