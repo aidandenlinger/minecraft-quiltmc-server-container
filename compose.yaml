@@ -3,7 +3,7 @@ version: "3.8"
 services:
   quilt-server:
     build: 
-      context: .
+      dockerfile: Containerfile
       args:
         MINECRAFT_VERSION: "1.20.1"
     volumes:
