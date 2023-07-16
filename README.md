@@ -1,4 +1,4 @@
-# QuiltMC Server Container _(quiltmc-server-container)_
+# QuiltMC Server Container _(minecraft-quiltmc-server-container)_
 
 Sandbox a QuiltMC Minecraft server in a container/docker!
 
