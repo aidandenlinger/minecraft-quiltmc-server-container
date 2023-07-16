@@ -1,6 +1,6 @@
 ARG MINECRAFT_VERSION
 
-FROM eclipse-temurin:17 AS build
+FROM docker.io/library/eclipse-temurin:17-jre-alpine AS build
 # Bring the argument into build
 ARG MINECRAFT_VERSION
 
