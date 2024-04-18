@@ -6,7 +6,7 @@ services:
       dockerfile: Containerfile
       args:
         # Change this to the minecraft version you want a server for!
-        MINECRAFT_VERSION: "1.20.1"
+        MINECRAFT_VERSION: "1.20.4"
 
     # limit the resources that can be used by the server!
     deploy:

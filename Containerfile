@@ -1,6 +1,6 @@
 ARG MINECRAFT_VERSION
 
-FROM docker.io/library/eclipse-temurin:17-jre-alpine AS build
+FROM docker.io/library/eclipse-temurin:22-jre-alpine AS build
 # Bring the argument into build
 ARG MINECRAFT_VERSION
 
@@ -17,7 +17,7 @@ WORKDIR /data
 RUN echo "serverJar=/server/server.jar" > quilt-server-launcher.properties \
     && java -jar /server/quilt-server-launch.jar nogui > /dev/null
 
-FROM gcr.io/distroless/java17-debian11
+FROM gcr.io/distroless/java17-debian12
 WORKDIR /data
 # Copy all jars over! They will be *readonly* within this image :)
 COPY --from=build /server /server
@@ -29,12 +29,5 @@ COPY --from=build /data/quilt-server-launcher.properties /data/quilt-server-laun
 # Expose the default port for a minecraft server
 EXPOSE 22565/tcp
 EXPOSE 22565/udp
-
-# https://quiltmc.org/en/blog/2023-06-26-mau-beacon/
-# The beacon requires writing to the ~/.config directory
-# and makes a couple of folders - this is annoying in a
-# read only image, so I'm disabling the beacon. I'm open
-# to a PR to create a writable mount for this config file.
-ENV QUILT_LOADER_DISABLE_BEACON=true
 
 CMD ["/server/quilt-server-launch.jar", "nogui"]
