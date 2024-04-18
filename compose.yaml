@@ -1,6 +1,7 @@
 services:
   quilt-server:
     build: 
+      context: .
       dockerfile: Containerfile
       args:
         # Change this to the minecraft version you want a server for!
@@ -12,7 +13,8 @@ services:
         limits:
           cpus: 6
           memory: 4g
-          pids: 1
+
+    pids_limit: 1
 
     ports:
       # Open default port for minecraft server
