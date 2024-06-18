@@ -5,7 +5,7 @@ services:
       dockerfile: Containerfile
       args:
         # Change this to the minecraft version you want a server for!
-        MINECRAFT_VERSION: "1.20.4"
+        MINECRAFT_VERSION: "1.21"
 
     # limit the resources that can be used by the server!
     deploy:
@@ -70,7 +70,7 @@ services:
     tmpfs:
       # Java writes and executes from /tmp
       - /tmp:size=10M,mode=0770,nosuid,nodev
-      - /data/.cache:size=100M,mode=0770,noexec,nosuid,nodev
+      - /data/.cache:size=200M,mode=0770,noexec,nosuid,nodev
 
     # Drop all capabilities since we don't need them!
     cap_drop:

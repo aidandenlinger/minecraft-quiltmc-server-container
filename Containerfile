@@ -17,7 +17,7 @@ WORKDIR /data
 RUN echo "serverJar=/server/server.jar" > quilt-server-launcher.properties \
     && java -jar /server/quilt-server-launch.jar nogui > /dev/null
 
-FROM gcr.io/distroless/java17-debian12
+FROM gcr.io/distroless/java21-debian12
 WORKDIR /data
 # Copy all jars over! They will be *readonly* within this image :)
 COPY --from=build /server /server
